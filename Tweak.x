@@ -1,6 +1,8 @@
-%hook UIViewController
+#import <UIKit/UIKit.h>
 
-- (void)viewDidLoad {
+%hook UIWindow
+
+- (void)makeKeyAndVisible {
     %orig;
     self.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
 }
@@ -8,9 +10,9 @@
 %end
 
 
-%hook UIWindow
+%hook UIViewController
 
-- (void)makeKeyAndVisible {
+- (void)viewDidLoad {
     %orig;
     self.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
 }
