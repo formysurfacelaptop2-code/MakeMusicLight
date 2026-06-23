@@ -1,9 +1,12 @@
-#import <UIKit/UIKit.h>
+%hook UIViewController
 
-// Forces every window in Apple Music to Light Mode, regardless of the
-// system-wide appearance setting. Public API only (overrideUserInterfaceStyle,
-// stable since iOS 13) — no private classes, nothing to break when Apple
-// redesigns Music's UI.
+- (void)viewDidLoad {
+    %orig;
+    self.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
+}
+
+%end
+
 
 %hook UIWindow
 
