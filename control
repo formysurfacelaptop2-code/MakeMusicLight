@@ -1,9 +1,8 @@
 Package: com.yourname.makemusiclight
 Name: MakeMusicLight
 Version: 0.1
-Architecture: iphoneos-arm
+Architecture: iphoneos-arm64
 Description: Forces Apple Music into Light Mode, independent of system appearance.
 Maintainer: YourName
 Author: YourName
 Section: Tweaks
-Depends: mobilesubstrate (>= 0.9.5000)
