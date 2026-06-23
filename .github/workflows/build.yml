@@ -11,17 +11,21 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
 
-      - name: Set up Theos
-        uses: Randomblock1/theos-action@v1
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: Randomblock1/theos-action@v1
+
+      - name: Configure rootless
+        run: echo "THEOS_PACKAGE_SCHEME=rootless" >> $GITHUB_ENV
 
       - name: Build .deb
-        run: make package FINALPACKAGE=1
+        run: |
+          export THEOS_PACKAGE_SCHEME=rootless
+          make clean package FINALPACKAGE=1
 
-      - name: Publish release with .deb
+      - name: Publish release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: build-${{ github.run_number }}
